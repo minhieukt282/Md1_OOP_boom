@@ -1,6 +1,3 @@
-const c = document.getElementById("myCanvas").getContext("2d");
-c.width = innerWidth;
-c.height = innerHeight;
 
 //creat map
 const map = [
@@ -250,6 +247,7 @@ const imageBoom = new Image()
 imageBoom.src = '../Image/bomb.png'
 
 //creat boom
+const booms = []
 let boomPosition = []
 let boom = new Boom({
     position: {
@@ -257,34 +255,40 @@ let boom = new Boom({
         y: -50
     }, image: imageBoom
 })
+// booms.forEach((boom) => {
+//     booms.push(new Boom({
+//         position: {
+//             x: 0,
+//             y: 0
+//         }, image = imageBoom
+//     }))
+// })
 
 //creat BoomBang Image
 const imageBoomBang = new Image()
+// imageBoomBang.src = '../Image/bombbang_up_2.png'
 imageBoomBang.src = '../Image/bombbang.png'
 //creat BoomBang
 let boomBang = new BoomBang({
     position: {
-        x: 100,
-        y: 100
+        x: -150,
+        y: -150
     }, image: imageBoomBang
 })
 
 
 function circleCollidesWidhRectangle({circle, rectangle}) {
-    // return (circle.position.y - circle.radius + circle.speed.y <= rectangle.position.y + rectangle.height &&
-    //     circle.position.x + circle.radius + circle.speed.x >= rectangle.position.x &&
-    //     circle.position.y + circle.radius + circle.speed.y >= rectangle.position.y &&
-    //     circle.position.x - circle.radius + circle.speed.x <= rectangle.position.x + rectangle.width)
-
     return (circle.position.x + circle.width + circle.speed.x >= rectangle.position.x &&
         circle.position.x + circle.speed.x <= rectangle.position.x + rectangle.width &&
         circle.position.y + circle.height + circle.speed.y >= rectangle.position.y &&
         circle.position.y + circle.speed.y <= rectangle.position.y + rectangle.height)
+}
 
-    // return (circle.position.y - circle.height + circle.speed.y <= rectangle.position.y + rectangle.height &&
-    //     circle.position.x + circle.width + circle.speed.x >= rectangle.position.x &&
-    //     circle.position.y + circle.height + circle.speed.y >= rectangle.position.y &&
-    //     circle.position.x - circle.width + circle.speed.x <= rectangle.position.x + rectangle.width)
+function playerCollidesBoomBang({player, boomBang}) {
+    return (player.position.x + player.width + player.speed.x >= boomBang.position.x &&
+        player.position.x + player.speed.x <= boomBang.position.x + boomBang.width &&
+        player.position.y + player.height + player.speed.y >= boomBang.position.y &&
+        player.position.y + player.speed.y <= boomBang.position.y + boomBang.height)
 }
 
 function animation() {
@@ -296,20 +300,43 @@ function animation() {
             player.speed.x = 0
             player.speed.y = 0
         }
+        if (boomBang.position.x + boomBang.width >= boundary.position.x &&
+            boomBang.position.x <= boundary.position.x + boundary.width &&
+            boomBang.position.y + boomBang.height >= boundary.position.y &&
+            boomBang.position.y <= boundary.position.y + boundary.height) {
+            console.log("boom cham tuong")
+        }
     })
+
     boom.update()
     player.update()
-    if (btn) {
+    boomBang.update()
+    //draw boomBang
+    if (checkStatusBoomBang) {
         boomBang.update();
         setTimeout(() => {
-            btn = false
-        }, 500)
-
+            checkStatusBoomBang = false
+            boomBang.position = {
+                x: -150,
+                y: -150
+            }
+        }, 1000)
     }
+    if (playerCollidesBoomBang({player, boomBang})) {
+        imagePlayer.src = '../Image/bomber_dead.png'
+        checkStatusPlayer = true
+        console.log("Va cham boom")
+    }
+    // console.log(checkStatusPlayer)
+
 }
 
-var btn = false
+var checkStatusBoomBang = false
+var checkStatusPlayer = false
+
 addEventListener('keydown', (key) => {
+
+
     if (key.keyCode === 87) {
         player.speed.y = -4
         imagePlayer.src = '../Image/bomber_up.png'
@@ -326,12 +353,13 @@ addEventListener('keydown', (key) => {
         player.speed.x = 4
         imagePlayer.src = '../Image/bomber_right.png'
     }
+
+
     if (key.keyCode === 66) {
         boomPosition.push({
             x: player.position.x,
             y: player.position.y,
         })
-
     }
 })
 addEventListener('keyup', (key) => {
@@ -364,14 +392,11 @@ addEventListener('keyup', (key) => {
                 x: -50,
                 y: -50
             }
-            btn = true;
+            checkStatusBoomBang = true;
         }, 2000)
 
     }
 })
 
-function speedEnemy() {
-    enemy.speed.x += 3
-}
 
 animation();

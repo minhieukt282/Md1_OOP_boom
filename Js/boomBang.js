@@ -9,7 +9,6 @@ class BoomBang {
 
     draw() {
         c.drawImage(this.image, this.position.x, this.position.y)
-
     }
 
     update() {
