@@ -2,104 +2,247 @@ const c = document.getElementById("myCanvas").getContext("2d");
 c.width = innerWidth;
 c.height = innerHeight;
 
-class Boundary {
-    static width = 45
-    static height = 65
-
-    constructor({position}) {
-        this.position = position;
-        this.width = 45
-        this.height = 65
-    }
-
-    draw() {
-        c.fillStyle = 'blue'
-        c.fillRect(this.position.x, this.position.y, this.width, this.height)
-    }
-}
-
-class Player {
-    constructor({position, speed, image}) {
-        this.position = position
-        this.speed = speed
-        this.radius = 15
-        this.image = image
-        this.width = 45
-        this.height = 65
-    }
-
-    draw() {
-        // c.beginPath();
-        // c.arc(this.position.x, this.position.y, this.radius, 0, 2 * Math.PI);
-        // c.fillStyle = 'red';
-        // c.fill();
-        // c.closePath()
-        c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height)
-    }
-
-    update() {
-        this.draw()
-        this.position.x += this.speed.x
-        this.position.y += this.speed.y
-    }
-}
-
-// function creatImage(src){
-//     const image = new Image()
-//     image.src = src
-//     return image
-// }
-const image = new Image()
-image.src = '../Image/bomber_down.png'
-let player = new Player({
-    position: {
-        x: Boundary.width + Boundary.width / 2 -20 ,
-        y: Boundary.height + Boundary.height /2
-    }, speed: {
-        x: 0,
-        y: 0
-    }, image: image
-})
-console.log(player.position)
-// const keys = {
-//     w: {
-//         pressed: false
-//     },
-//     a: {
-//         pressed: false
-//     },
-//     d: {
-//         pressed: false
-//     },
-//     s: {
-//         pressed: false
-//     }
-//
-// }
-let lastKey = ' '
+//creat map
 const map = [
-    ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
-    ['-', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '-'],
-    ['-', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '-'],
-    ['-', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '-'],
-    ['-', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '-'],
-    ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-']
+    ['1', '-', '-', '-', '-', '-', '-', '-', '-', '-', '2'],
+    ['|', '.', '.', '.', '.', '.', '.', '.', '.', '.', '|'],
+    ['|', '.', 'b', '.', '[', '7', ']', '.', 'b', '.', '|'],
+    ['|', '.', '.', '.', '.', '_', '.', '.', '.', '.', '|'],
+    ['|', '.', '[', ']', '.', '.', '.', '[', ']', '.', '|'],
+    ['|', '.', '.', '.', '.', '^', '.', '.', '.', '.', '|'],
+    ['|', '.', 'b', '.', '[', '+', ']', '.', 'b', '.', '|'],
+    ['|', '.', '.', '.', '.', '_', '.', '.', '.', '.', '|'],
+    ['|', '.', '[', ']', '.', '.', '.', '[', ']', '.', '|'],
+    ['|', '.', '.', '.', '.', '^', '.', '.', '.', '.', '|'],
+    ['|', '.', 'b', '.', '[', '5', ']', '.', 'b', '.', '|'],
+    ['|', '.', '.', '.', '.', '.', '.', '.', '.', 'p', '|'],
+    ['4', '-', '-', '-', '-', '-', '-', '-', '-', '-', '3']
 ]
 const boundaries = []
-//creat map
 map.forEach((row, i) => {
     row.forEach((symbol, j) => {
         switch (symbol) {
             case '-':
-                boundaries.push(new Boundary({
-                    position: {
-                        x: Boundary.width * j,
-                        y: Boundary.height * i
-                    }
-                }))
+                boundaries.push(
+                    new Boundary({
+                        position: {
+                            x: Boundary.width * j,
+                            y: Boundary.height * i
+                        },
+
+                    })
+                )
+                break
+            case '|':
+                boundaries.push(
+                    new Boundary({
+                        position: {
+                            x: Boundary.width * j,
+                            y: Boundary.height * i
+                        },
+
+                    })
+                )
+                break
+            case '1':
+                boundaries.push(
+                    new Boundary({
+                        position: {
+                            x: Boundary.width * j,
+                            y: Boundary.height * i
+                        },
+
+                    })
+                )
+                break
+            case '2':
+                boundaries.push(
+                    new Boundary({
+                        position: {
+                            x: Boundary.width * j,
+                            y: Boundary.height * i
+                        },
+
+                    })
+                )
+                break
+            case '3':
+                boundaries.push(
+                    new Boundary({
+                        position: {
+                            x: Boundary.width * j,
+                            y: Boundary.height * i
+                        },
+
+                    })
+                )
+                break
+            case '4':
+                boundaries.push(
+                    new Boundary({
+                        position: {
+                            x: Boundary.width * j,
+                            y: Boundary.height * i
+                        },
+
+                    })
+                )
+                break
+            case 'b':
+                boundaries.push(
+                    new Boundary({
+                        position: {
+                            x: Boundary.width * j,
+                            y: Boundary.height * i
+                        },
+
+                    })
+                )
+                break
+            case '[':
+                boundaries.push(
+                    new Boundary({
+                        position: {
+                            x: j * Boundary.width,
+                            y: i * Boundary.height
+                        },
+
+                    })
+                )
+                break
+            case ']':
+                boundaries.push(
+                    new Boundary({
+                        position: {
+                            x: j * Boundary.width,
+                            y: i * Boundary.height
+                        },
+
+                    })
+                )
+                break
+            case '_':
+                boundaries.push(
+                    new Boundary({
+                        position: {
+                            x: j * Boundary.width,
+                            y: i * Boundary.height
+                        },
+
+                    })
+                )
+                break
+            case '^':
+                boundaries.push(
+                    new Boundary({
+                        position: {
+                            x: j * Boundary.width,
+                            y: i * Boundary.height
+                        },
+
+                    })
+                )
+                break
+            case '+':
+                boundaries.push(
+                    new Boundary({
+                        position: {
+                            x: j * Boundary.width,
+                            y: i * Boundary.height
+                        },
+
+                    })
+                )
+                break
+            case '5':
+                boundaries.push(
+                    new Boundary({
+                        position: {
+                            x: j * Boundary.width,
+                            y: i * Boundary.height
+                        },
+                        color: 'blue',
+
+                    })
+                )
+                break
+            case '6':
+                boundaries.push(
+                    new Boundary({
+                        position: {
+                            x: j * Boundary.width,
+                            y: i * Boundary.height
+                        },
+                        color: 'blue',
+
+                    })
+                )
+                break
+            case '7':
+                boundaries.push(
+                    new Boundary({
+                        position: {
+                            x: j * Boundary.width,
+                            y: i * Boundary.height
+                        },
+                        color: 'blue',
+
+                    })
+                )
+                break
+            case '8':
+                boundaries.push(
+                    new Boundary({
+                        position: {
+                            x: j * Boundary.width,
+                            y: i * Boundary.height
+                        },
+
+                    })
+                )
                 break
         }
     })
+})
+
+//creat player image
+const imagePlayer = new Image()
+imagePlayer.src = '../Image/bomber_down.png'
+
+//creat player
+let player = new Player({
+    position: {
+        x: Boundary.width + Boundary.width / 2 - 18,
+        y: Boundary.height + Boundary.height / 2
+    }, speed: {
+        x: 0,
+        y: 0
+    }, image: imagePlayer
+})
+
+//creat Image enemy
+const imageEnemy = new Image()
+imageEnemy.src = '../Image/monster_down.png'
+
+//creat enemy
+let enemy = new Player({
+    position: {
+        x: Boundary.width + Boundary.width / 2 - 18,
+        y: Boundary.height + Boundary.height / 2
+    }, image: imageEnemy
+})
+
+//creat Boom image
+const imageBoom = new Image()
+imageBoom.src = '../Image/bomb.png'
+
+//creat boom
+let boomPosition = []
+let boom = new Boom({
+    position: {
+        x: -50,
+        y: -50
+    }, image: imageBoom
 })
 
 function circleCollidesWidhRectangle({circle, rectangle}) {
@@ -108,140 +251,86 @@ function circleCollidesWidhRectangle({circle, rectangle}) {
     //     circle.position.y + circle.radius + circle.speed.y >= rectangle.position.y &&
     //     circle.position.x - circle.radius + circle.speed.x <= rectangle.position.x + rectangle.width)
 
-    return (circle.position.x + circle.width + circle.speed.x >= rectangle.position.x  &&
+    return (circle.position.x + circle.width + circle.speed.x >= rectangle.position.x &&
         circle.position.x + circle.speed.x <= rectangle.position.x + rectangle.width &&
         circle.position.y + circle.height + circle.speed.y >= rectangle.position.y &&
-        circle.position.y + circle.speed.x <= rectangle.position.y + rectangle.height)
-}
+        circle.position.y + circle.speed.y <= rectangle.position.y + rectangle.height)
 
+    // return (circle.position.y - circle.height + circle.speed.y <= rectangle.position.y + rectangle.height &&
+    //     circle.position.x + circle.width + circle.speed.x >= rectangle.position.x &&
+    //     circle.position.y + circle.height + circle.speed.y >= rectangle.position.y &&
+    //     circle.position.x - circle.width + circle.speed.x <= rectangle.position.x + rectangle.width)
+}
 
 function animation() {
     requestAnimationFrame(animation)
     c.clearRect(0, 0, c.width, c.height)
-
-    // if (keys.w.pressed && lastKey === 'w') {
-    //     for (let i = 0; i < boundaries.length; i++) {
-    //         const boundary = boundaries[i]
-    //         if (circleCollidesWidhRectangle({
-    //             circle: {
-    //                 ...player, speed: {
-    //                     x: 0,
-    //                     y: -3
-    //                 }
-    //             }, rectangle: boundary
-    //         })) {
-    //             player.speed.y = 0
-    //             break
-    //         } else {
-    //             player.speed.y = -3
-    //         }
-    //     }
-    // } else if (keys.a.pressed && lastKey === 'a') {
-    //     for (let i = 0; i < boundaries.length; i++) {
-    //         const boundary = boundaries[i]
-    //         if (circleCollidesWidhRectangle({
-    //             circle: {
-    //                 ...player, speed: {
-    //                     x: -3,
-    //                     y: 0
-    //                 }
-    //             }, rectangle: boundary
-    //         })) {
-    //             player.speed.x = 0
-    //             break
-    //         } else {
-    //             player.speed.x = -3
-    //         }
-    //     }
-    // } else if (keys.s.pressed && lastKey === 's') {
-    //     for (let i = 0; i < boundaries.length; i++) {
-    //         const boundary = boundaries[i]
-    //         if (circleCollidesWidhRectangle({
-    //             circle: {
-    //                 ...player, speed: {
-    //                     x: 0,
-    //                     y: 3
-    //                 }
-    //             }, rectangle: boundary
-    //         })) {
-    //             player.speed.y = 0
-    //             break
-    //         } else {
-    //             player.speed.y = 3
-    //         }
-    //     }
-    // } else if (keys.d.pressed && lastKey === 'd') {
-    //     for (let i = 0; i < boundaries.length; i++) {
-    //         const boundary = boundaries[i]
-    //         if (circleCollidesWidhRectangle({
-    //             circle: {
-    //                 ...player, speed: {
-    //                     x: 3,
-    //                     y: 0
-    //                 }
-    //             }, rectangle: boundary
-    //         })) {
-    //             player.speed.x = 0
-    //             break
-    //         } else {
-    //             player.speed.x = 3
-    //         }
-    //     }
-    // }
-
     boundaries.forEach((boundary) => {
         boundary.draw()
         if (circleCollidesWidhRectangle({circle: player, rectangle: boundary})) {
-            console.log(player.position)
-            console.log(player.speed)
             player.speed.x = 0
             player.speed.y = 0
         }
     })
+    boom.update()
     player.update()
+    enemy.update()
+}
+
+addEventListener('keydown', (key) => {
+    if (key.keyCode === 87) {
+        player.speed.y = -4
+        imagePlayer.src = '../Image/bomber_up.png'
+    }
+    if (key.keyCode === 65) {
+        player.speed.x = -4
+        imagePlayer.src = '../Image/bomber_left.png'
+    }
+    if (key.keyCode === 83) {
+        player.speed.y = 4
+        imagePlayer.src = '../Image/bomber_down.png'
+    }
+    if (key.keyCode === 68) {
+        player.speed.x = 4
+        imagePlayer.src = '../Image/bomber_right.png'
+    }
+    if (key.keyCode === 66) {
+        boomPosition.push({
+            x: player.position.x,
+            y: player.position.y,
+        })
+    }
+})
+addEventListener('keyup', (key) => {
+    if (key.keyCode === 87) {
+        player.speed.y = 0
+        imagePlayer.src = '../Image/bomber_up.png'
+    } else if (key.keyCode === 65) {
+        player.speed.x = 0
+        imagePlayer.src = '../Image/bomber_left.png'
+    } else if (key.keyCode === 83) {
+        player.speed.y = 0
+        imagePlayer.src = '../Image/bomber_down.png'
+    } else if (key.keyCode === 68) {
+        player.speed.x = 0
+        imagePlayer.src = '../Image/bomber_right.png'
+    }
+    if (key.keyCode === 66) {
+        boom.position = {
+            x: player.position.x,
+            y: player.position.y,
+        }
+        setTimeout(() => {
+            boom.position = {
+                x: 0,
+                y: 0
+            }
+        }, 2000)
+
+    }
+})
+function speedEnemy(){
+    enemy.speed.x +=3
 }
 
 animation();
-addEventListener('keydown', ({key}) => {
-    switch (key) {
-        case 'w':
-            player.speed.y = -5
-            image.src = '../Image/bomber_up.png'
-            break
-        case 'a':
-            player.speed.x = -5
-            image.src = '../Image/bomber_left.png'
-            break
-        case 's':
-            player.speed.y = 5
-            image.src = '../Image/bomber_down.png'
-            break
-        case 'd':
-            player.speed.x = 5
-            image.src = '../Image/bomber_right.png'
-            break
-    }
-
-})
-
-addEventListener('keyup', ({key}) => {
-    switch (key) {
-        case 'w':
-            player.speed.y =0
-            image.src = '../Image/bomber_up.png'
-            break
-        case 'a':
-            player.speed.x =0
-            image.src = '../Image/bomber_left.png'
-            break
-        case 's':
-            player.speed.y =0
-            image.src = '../Image/bomber_down.png'
-            break
-        case 'd':
-            player.speed.x =0
-            image.src = '../Image/bomber_right.png'
-            break
-    }
-    console.log(player.speed)
-})
