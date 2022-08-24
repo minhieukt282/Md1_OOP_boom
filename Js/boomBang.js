@@ -1,4 +1,4 @@
-class Boom {
+class BoomBang {
     constructor({position, image}) {
         this.position = position
         this.image = image
@@ -6,11 +6,15 @@ class Boom {
         this.height = 35
     }
 
+
     draw() {
-        c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height)
+        c.drawImage(this.image, this.position.x, this.position.y)
+
     }
 
     update() {
         this.draw()
+
     }
+
 }

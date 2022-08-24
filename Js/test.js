@@ -6,18 +6,31 @@ c.height = innerHeight;
 const map = [
     ['1', '-', '-', '-', '-', '-', '-', '-', '-', '-', '2'],
     ['|', '.', '.', '.', '.', '.', '.', '.', '.', '.', '|'],
-    ['|', '.', 'b', '.', '[', '7', ']', '.', 'b', '.', '|'],
-    ['|', '.', '.', '.', '.', '_', '.', '.', '.', '.', '|'],
-    ['|', '.', '[', ']', '.', '.', '.', '[', ']', '.', '|'],
-    ['|', '.', '.', '.', '.', '^', '.', '.', '.', '.', '|'],
-    ['|', '.', 'b', '.', '[', '+', ']', '.', 'b', '.', '|'],
-    ['|', '.', '.', '.', '.', '_', '.', '.', '.', '.', '|'],
-    ['|', '.', '[', ']', '.', '.', '.', '[', ']', '.', '|'],
-    ['|', '.', '.', '.', '.', '^', '.', '.', '.', '.', '|'],
-    ['|', '.', 'b', '.', '[', '5', ']', '.', 'b', '.', '|'],
-    ['|', '.', '.', '.', '.', '.', '.', '.', '.', 'p', '|'],
+    ['|', '.', '.', '.', '.', '.', '.', '.', '.', '.', '|'],
+    ['|', '.', '.', '.', '.', '.', '.', '.', '.', '.', '|'],
+    ['|', '.', '.', '.', '.', '.', '.', '.', '.', '.', '|'],
+    ['|', '.', '.', '.', '.', '.', '.', '.', '.', '.', '|'],
+    ['|', '.', '.', '.', '.', '.', '.', '.', '.', '.', '|'],
+    ['|', '.', '.', '.', '.', '.', '.', '.', '.', '.', '|'],
+    ['|', '.', '.', '.', '.', '.', '.', '.', '.', '.', '|'],
     ['4', '-', '-', '-', '-', '-', '-', '-', '-', '-', '3']
 ]
+
+// const map = [
+//     ['1', '-', '-', '-', '-', '-', '-', '-', '-', '-', '2'],
+//     ['|', '.', '.', '.', '.', '.', '.', '.', '.', '.', '|'],
+//     ['|', '.', 'b', '.', '[', '7', ']', '.', 'b', '.', '|'],
+//     ['|', '.', '.', '.', '.', '_', '.', '.', '.', '.', '|'],
+//     ['|', '.', '[', ']', '.', '.', '.', '[', ']', '.', '|'],
+//     ['|', '.', '.', '.', '.', '^', '.', '.', '.', '.', '|'],
+//     ['|', '.', 'b', '.', '[', '+', ']', '.', 'b', '.', '|'],
+//     ['|', '.', '.', '.', '.', '_', '.', '.', '.', '.', '|'],
+//     ['|', '.', '[', ']', '.', '.', '.', '[', ']', '.', '|'],
+//     ['|', '.', '.', '.', '.', '^', '.', '.', '.', '.', '|'],
+//     ['|', '.', 'b', '.', '[', '5', ']', '.', 'b', '.', '|'],
+//     ['|', '.', '.', '.', '.', '.', '.', '.', '.', 'p', '|'],
+//     ['4', '-', '-', '-', '-', '-', '-', '-', '-', '-', '3']
+// ]
 const boundaries = []
 map.forEach((row, i) => {
     row.forEach((symbol, j) => {
@@ -245,6 +258,18 @@ let boom = new Boom({
     }, image: imageBoom
 })
 
+//creat BoomBang Image
+const imageBoomBang = new Image()
+imageBoomBang.src = '../Image/bombbang.png'
+//creat BoomBang
+let boomBang = new BoomBang({
+    position: {
+        x: 100,
+        y: 100
+    }, image: imageBoomBang
+})
+
+
 function circleCollidesWidhRectangle({circle, rectangle}) {
     // return (circle.position.y - circle.radius + circle.speed.y <= rectangle.position.y + rectangle.height &&
     //     circle.position.x + circle.radius + circle.speed.x >= rectangle.position.x &&
@@ -274,9 +299,16 @@ function animation() {
     })
     boom.update()
     player.update()
-    enemy.update()
+    if (btn) {
+        boomBang.update();
+        setTimeout(() => {
+            btn = false
+        }, 500)
+
+    }
 }
 
+var btn = false
 addEventListener('keydown', (key) => {
     if (key.keyCode === 87) {
         player.speed.y = -4
@@ -299,6 +331,7 @@ addEventListener('keydown', (key) => {
             x: player.position.x,
             y: player.position.y,
         })
+
     }
 })
 addEventListener('keyup', (key) => {
@@ -318,19 +351,27 @@ addEventListener('keyup', (key) => {
     if (key.keyCode === 66) {
         boom.position = {
             x: player.position.x,
-            y: player.position.y,
+            y: player.position.y
         }
+        console.log(boom.position)
+        console.log(boomBang.position)
         setTimeout(() => {
-            boom.position = {
-                x: 0,
-                y: 0
+            boomBang.position = {
+                x: boom.position.x - 53,
+                y: boom.position.y - 53
             }
+            boom.position = {
+                x: -50,
+                y: -50
+            }
+            btn = true;
         }, 2000)
 
     }
 })
-function speedEnemy(){
-    enemy.speed.x +=3
+
+function speedEnemy() {
+    enemy.speed.x += 3
 }
 
 animation();
