@@ -191,6 +191,28 @@ map.forEach((row, i) => {
                     })
                 )
                 break
+            case 'v':
+                boundaries.push(
+                    new Boundary({
+                        position: {
+                            x: j * Boundary.width,
+                            y: i * Boundary.height
+                        },
+                        image: imageMap('../Image/pipeConnectorRight.png')
+                    })
+                )
+                break
+            case '10':
+                boundaries.push(
+                    new Boundary({
+                        position: {
+                            x: j * Boundary.width,
+                            y: i * Boundary.height
+                        },
+                        image: imageMap('../Image/pipeConnectorLeft.png')
+                    })
+                )
+                break
         }
     })
 })
@@ -202,8 +224,8 @@ imagePlayer.src = '../Image/bomber_down.png'
 //creat player
 let player = new Player({
     position: {
-        x: Boundary.width + Boundary.width / 2 + 280,
-        y: Boundary.height + Boundary.height / 2 - 20
+        x: Boundary.width + Boundary.width / 2 + 350,
+        y: Boundary.height + Boundary.height / 2 - 18
     }, speed: {
         x: 0,
         y: 0
@@ -271,6 +293,13 @@ let boomBang = new BoomBang({
     }, image: imageBoomBang('../Image/bombbang_down_1.png')
 })
 
+//creat audio
+function audioSrc(src){
+    var audio = new Audio(src)
+    audio.play()
+}
+audioSrc('..Audio/lobby.mp3')
+
 function playerCollidesWidhRectangle({circle, rectangle}) {
     return (circle.position.x + circle.width + circle.speed.x >= rectangle.position.x &&
         circle.position.x + circle.speed.x <= rectangle.position.x + rectangle.width &&
@@ -303,6 +332,7 @@ var direction = -1 // Enemy chuyen huong chuyen dong
 var checkDirection
 var countMonster = 0 //dem quai
 function animation() {
+    console.log("dạbdasd")
     requestAnimationFrame(animation)
     c.clearRect(0, 0, c.width, c.height)
     // Math.floor(Math.random() * (max - min + 1) ) + min;
@@ -390,6 +420,7 @@ function animation() {
                 x: -150,
                 y: -150
             }
+            audioSrc('../Audio/bombangV2.mp3')
         }, 250)
     }
 
@@ -398,6 +429,7 @@ function animation() {
         checkStatusPlayer = true
         console.log("Va cham boom")
     }
+    // enemy die
     if (playerCollidesBoomBang({player: enemy, boomBang: boomBang})) {
         countMonster++
         enemy.position = {
@@ -408,6 +440,7 @@ function animation() {
             x: 0,
             y: 0
         }
+        audioSrc('../Audio/monster_die.mp3')
     }
     if (playerCollidesBoomBang({player: enemy2, boomBang: boomBang})) {
         countMonster++
@@ -419,6 +452,7 @@ function animation() {
             x: 0,
             y: 0
         }
+        audioSrc('../Audio/monster_die.mp3')
     }
     // endgame
     if (playerCollidesMonster({player: player, monster: enemy})) {
@@ -427,7 +461,7 @@ function animation() {
             x: -50,
             y: -50
         }
-
+        audioSrc('../Audio/bomber_die.mp3')
     }
     if (playerCollidesMonster({player: player, monster: enemy2})) {
         console.log("dead")
@@ -435,13 +469,13 @@ function animation() {
             x: -50,
             y: -50
         }
-
+        audioSrc('../Audio/bomber_die.mp3')
     }
     if (countMonster == 2) {
         setTimeout(() => {
             console.log("you Win")
         }, 1000)
-
+        // audioSrc('../Audio/victory.mp3')
         countMonster = 0
     }
 
@@ -474,6 +508,7 @@ addEventListener('keydown', (key) => {
             x: player.position.x,
             y: player.position.y,
         })
+        audioSrc('../Audio/newbomb.mp3')
     }
 })
 addEventListener('keyup', (key) => {

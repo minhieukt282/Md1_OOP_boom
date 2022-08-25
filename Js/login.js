@@ -1,10 +1,4 @@
-function register() {
-    window.location = "register.html";
-}
 
-function returnLogin() {
-    window.location = "login.html";
-}
 
 function login() {
     let userName = document.getElementById("user").value;
@@ -20,7 +14,7 @@ function login() {
     }
 
     if (isValue) {
-        window.location = "Boom.html";
+        window.location = "Lobby.html";
     } else
         document.getElementById("note").innerHTML = "Tên đăng nhập hoặc mật khẩu sai";
 }
@@ -49,4 +43,12 @@ function saveData() {
     }
 
 }
+function audioSrc(src){
+    var audio = new Audio(src)
+    audio.play()
+}
 
+
+function music(){
+    audioSrc('..Audio/lobby.mp3')
+}

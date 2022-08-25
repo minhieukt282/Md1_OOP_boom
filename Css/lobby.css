@@ -1,0 +1,14 @@
+body{
+    /*background-image: url("../Image/background_option.png");*/
+    text-align: center;
+    opacity: 100%;
+
+}
+
+button{
+    width: 150px;
+    height: 25px;
+    color: gold;
+    background-color: red;
+    border: 0;
+}

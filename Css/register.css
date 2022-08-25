@@ -1,35 +1,44 @@
 body {
-    width: 400px;
-    height: 450px;
+    /*position: absolute;*/
     background-image: url("../Image/backgroundV2.png");
     background-size: cover;
+    display: flex;
+    justify-content: center;
+    color: gold;
 }
 
 table, tr, td {
-    /*border: 1px solid white;*/
     border-collapse: collapse;
     width: 400px;
-    /*border: 1px solid black;*/
-    color: white;
 }
 
 tr, td {
     width: 100px;
     height: 40px;
-
 }
 
 th {
-    background: blue;
-    color: white;
+    background: darkgreen;
+
 }
 
 button {
     width: 200px;
     height: 25px;
     text-align: center;
+    background-color: darkgreen;
+    color: gold;
+    border: 0;
+
 }
+
 p {
-    color: white;
     text-align: center;
+}
+input{
+    background: none;
+}
+
+div{
+    margin-top: 480px;
 }
