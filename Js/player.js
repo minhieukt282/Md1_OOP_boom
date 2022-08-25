@@ -3,8 +3,8 @@ class Player {
         this.position = position
         this.speed = speed
         this.image = image
-        this.width = 30
-        this.height = 32
+        this.width = 40
+        this.height = 50
     }
 
     draw() {

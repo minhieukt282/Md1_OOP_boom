@@ -5,6 +5,7 @@ function imageMap(src) {
     return image
 }
 
+
 const boundaries = []
 map.forEach((row, i) => {
     row.forEach((symbol, j) => {
@@ -15,7 +16,9 @@ map.forEach((row, i) => {
                         position: {
                             x: Boundary.width * j,
                             y: Boundary.height * i
-                        }, image: imageMap('../Image/pipeHorizontal.png')
+                        },
+                        image: imageMap('../Image/pipeHorizontal.png')
+                        // image: imageMap('../Image/Untitled-1.png')
 
                     })
                 )
@@ -199,7 +202,7 @@ imagePlayer.src = '../Image/bomber_down.png'
 //creat player
 let player = new Player({
     position: {
-        x: Boundary.width + Boundary.width / 2 + 305,
+        x: Boundary.width + Boundary.width / 2 + 280,
         y: Boundary.height + Boundary.height / 2 - 20
     }, speed: {
         x: 0,
@@ -214,14 +217,16 @@ imageEnemy.src = '../Image/monster_down.png'
 const imageEnemy2 = new Image()
 imageEnemy2.src = '../Image/monster_down.png'
 
-//creat enemy
+// creat enemy
 let enemy = new Player({
     position: {
         x: Boundary.width + Boundary.width / 2 + 180,
         y: Boundary.height + Boundary.height / 2 + 100
+        // x: -50,
+        // y: -50
     }, speed: {
         x: 0,
-        y: Math.floor(Math.random() * (1.5 - 1 + 1) ) + 1
+        y: Math.floor(Math.random() * (1.5 - 1 + 1)) + 1
     }, image: imageEnemy
 })
 
@@ -229,8 +234,10 @@ let enemy2 = new Player({
     position: {
         x: Boundary.width + Boundary.width / 2 - 18,
         y: Boundary.height + Boundary.height / 2
+        // x: -50,
+        // y: -50
     }, speed: {
-        x: Math.floor(Math.random() * (1.5 - 1 + 1) ) + 1,
+        x: Math.floor(Math.random() * (1.5 - 1 + 1)) + 1,
         y: 0
     }, image: imageEnemy2
 })
@@ -250,15 +257,18 @@ let boom = new Boom({
 })
 
 //creat BoomBang Image
-const imageBoomBang = new Image()
-// imageBoomBang.src = '../Image/bombbang_up_2.png'
-imageBoomBang.src = '../Image/bombbang.png'
+function imageBoomBang(src) {
+    let image = new Image()
+    image.src = src
+    return image
+}
+
 //creat BoomBang
 let boomBang = new BoomBang({
     position: {
         x: -150,
         y: -150
-    }, image: imageBoomBang
+    }, image: imageBoomBang('../Image/bombbang_down_1.png')
 })
 
 function playerCollidesWidhRectangle({circle, rectangle}) {
@@ -417,20 +427,20 @@ function animation() {
             x: -50,
             y: -50
         }
-        alert("You lose")
+
     }
-    // if (playerCollidesMonster({player: player, monster: enemy2})) {
-    //     console.log("dead")
-    //     player.position = {
-    //         x: -50,
-    //         y: -50
-    //     }
-    //     alert("You lose")
-    // }
-    if (countMonster == 1) {
-        setTimeout(()=>{
+    if (playerCollidesMonster({player: player, monster: enemy2})) {
+        console.log("dead")
+        player.position = {
+            x: -50,
+            y: -50
+        }
+
+    }
+    if (countMonster == 2) {
+        setTimeout(() => {
             console.log("you Win")
-        },1000)
+        }, 1000)
 
         countMonster = 0
     }
@@ -489,8 +499,8 @@ addEventListener('keyup', (key) => {
         console.log(boomBang.position)
         setTimeout(() => {
             boomBang.position = {
-                x: boom.position.x - 53,
-                y: boom.position.y - 53
+                x: boom.position.x,
+                y: boom.position.y
             }
             boom.position = {
                 x: -50,
@@ -502,5 +512,5 @@ addEventListener('keyup', (key) => {
     }
 })
 
-
 animation();
+console.log(c.width, c.height)

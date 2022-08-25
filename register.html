@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DangKy</title>
+    <link rel="stylesheet" href="Css/register.css">
+</head>
+<body>
+
+
+<table>
+    <tr>
+        <th colspan="4">HỘI VIÊN MỚI</th>
+    </tr>
+    <tr>
+        <td>Họ tên</td>
+        <td colspan="2"><input id="fullname" type="text" size="30px" value=""></td>
+    </tr>
+    <tr>
+        <td>Mật khẩu</td>
+        <td colspan="2"><input id="mk" type="password" size="30px" value=""></td>
+    </tr>
+
+    <tr>
+        <td>Ngày sinh</td>
+        <td colspan="2"><input type="date"></td>
+    </tr>
+    <tr>
+        <td>Giới tính</td>
+        <td><input type="radio" id="male" name="gender" checked>Nam</td>
+        <td colspan="2"><input type="radio" id="female" name="gender">Nữ</td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td colspan="2"><input id="mail" type="text" value=""></td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <button onclick="saveData()">Đăng ký</button>
+        </td>
+        <td colspan="2">
+            <button onclick="returnLogin()">Back</button>
+        </td>
+    </tr>
+</table>
+<p id="result"></p>
+</body>
+</html>
+<script src="Js/login.js"></script>

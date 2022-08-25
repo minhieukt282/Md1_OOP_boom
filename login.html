@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dang nhap</title>
+    <link rel="stylesheet" href="Css/login.css">
+
+</head>
+<body>
+<div class="login">
+    <div class="dangnhap">
+        <h1>ĐĂNG NHẬP</h1>
+    </div>
+    <div class="info">
+        <div class="name_pass">
+            <p style="margin: 6px 0px;">Tên đăng nhập</p>
+            <p style="margin: 6px 0px;">Mật khẩu </p>
+        </div>
+        <div class="inp">
+            <input style="margin: 5px 0px; width:90%; background: none" type="text" id="user" name="userName">
+            <input style="margin: 5px 0px; width:90%; background: none" type="password" id="pass">
+        </div>
+    </div>
+    <div class="lgrg">
+        <button onclick="login()">Đăng nhập</button>
+        <button onclick="register()">Đăng ký</button>
+    </div>
+    <div style="text-align: center">
+        <p id="note"></p>
+    </div>
+</div>
+</body>
+</html>
+<script src="Js/login.js"></script>

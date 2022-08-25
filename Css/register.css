@@ -1,0 +1,35 @@
+body {
+    width: 400px;
+    height: 450px;
+    background-image: url("../Image/backgroundV2.png");
+    background-size: cover;
+}
+
+table, tr, td {
+    /*border: 1px solid white;*/
+    border-collapse: collapse;
+    width: 400px;
+    /*border: 1px solid black;*/
+    color: white;
+}
+
+tr, td {
+    width: 100px;
+    height: 40px;
+
+}
+
+th {
+    background: blue;
+    color: white;
+}
+
+button {
+    width: 200px;
+    height: 25px;
+    text-align: center;
+}
+p {
+    color: white;
+    text-align: center;
+}
