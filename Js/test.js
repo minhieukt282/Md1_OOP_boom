@@ -1,33 +1,10 @@
+//creat map block
+function imageMap(src) {
+    let image = new Image()
+    image.src = src
+    return image
+}
 
-//creat map
-const map = [
-    ['1', '-', '-', '-', '-', '-', '-', '-', '-', '-', '2'],
-    ['|', '.', '.', '.', '.', '.', '.', '.', '.', '.', '|'],
-    ['|', '.', '.', '.', '.', '.', '.', '.', '.', '.', '|'],
-    ['|', '.', '.', '.', '.', '.', '.', '.', '.', '.', '|'],
-    ['|', '.', '.', '.', '.', '.', '.', '.', '.', '.', '|'],
-    ['|', '.', '.', '.', '.', '.', '.', '.', '.', '.', '|'],
-    ['|', '.', '.', '.', '.', '.', '.', '.', '.', '.', '|'],
-    ['|', '.', '.', '.', '.', '.', '.', '.', '.', '.', '|'],
-    ['|', '.', '.', '.', '.', '.', '.', '.', '.', '.', '|'],
-    ['4', '-', '-', '-', '-', '-', '-', '-', '-', '-', '3']
-]
-
-// const map = [
-//     ['1', '-', '-', '-', '-', '-', '-', '-', '-', '-', '2'],
-//     ['|', '.', '.', '.', '.', '.', '.', '.', '.', '.', '|'],
-//     ['|', '.', 'b', '.', '[', '7', ']', '.', 'b', '.', '|'],
-//     ['|', '.', '.', '.', '.', '_', '.', '.', '.', '.', '|'],
-//     ['|', '.', '[', ']', '.', '.', '.', '[', ']', '.', '|'],
-//     ['|', '.', '.', '.', '.', '^', '.', '.', '.', '.', '|'],
-//     ['|', '.', 'b', '.', '[', '+', ']', '.', 'b', '.', '|'],
-//     ['|', '.', '.', '.', '.', '_', '.', '.', '.', '.', '|'],
-//     ['|', '.', '[', ']', '.', '.', '.', '[', ']', '.', '|'],
-//     ['|', '.', '.', '.', '.', '^', '.', '.', '.', '.', '|'],
-//     ['|', '.', 'b', '.', '[', '5', ']', '.', 'b', '.', '|'],
-//     ['|', '.', '.', '.', '.', '.', '.', '.', '.', 'p', '|'],
-//     ['4', '-', '-', '-', '-', '-', '-', '-', '-', '-', '3']
-// ]
 const boundaries = []
 map.forEach((row, i) => {
     row.forEach((symbol, j) => {
@@ -38,7 +15,7 @@ map.forEach((row, i) => {
                         position: {
                             x: Boundary.width * j,
                             y: Boundary.height * i
-                        },
+                        }, image: imageMap('../Image/pipeHorizontal.png')
 
                     })
                 )
@@ -49,7 +26,7 @@ map.forEach((row, i) => {
                         position: {
                             x: Boundary.width * j,
                             y: Boundary.height * i
-                        },
+                        }, image: imageMap('../Image/pipeVertical.png')
 
                     })
                 )
@@ -60,7 +37,7 @@ map.forEach((row, i) => {
                         position: {
                             x: Boundary.width * j,
                             y: Boundary.height * i
-                        },
+                        }, image: imageMap('../Image/pipeCorner1.png')
 
                     })
                 )
@@ -71,7 +48,7 @@ map.forEach((row, i) => {
                         position: {
                             x: Boundary.width * j,
                             y: Boundary.height * i
-                        },
+                        }, image: imageMap('../Image/pipeCorner2.png')
 
                     })
                 )
@@ -82,7 +59,7 @@ map.forEach((row, i) => {
                         position: {
                             x: Boundary.width * j,
                             y: Boundary.height * i
-                        },
+                        }, image: imageMap('../Image/pipeCorner3.png')
 
                     })
                 )
@@ -93,7 +70,7 @@ map.forEach((row, i) => {
                         position: {
                             x: Boundary.width * j,
                             y: Boundary.height * i
-                        },
+                        }, image: imageMap('../Image/pipeCorner4.png')
 
                     })
                 )
@@ -104,7 +81,7 @@ map.forEach((row, i) => {
                         position: {
                             x: Boundary.width * j,
                             y: Boundary.height * i
-                        },
+                        }, image: imageMap('../Image/block.png')
 
                     })
                 )
@@ -115,7 +92,7 @@ map.forEach((row, i) => {
                         position: {
                             x: j * Boundary.width,
                             y: i * Boundary.height
-                        },
+                        }, image: imageMap('../Image/capLeft.png')
 
                     })
                 )
@@ -127,7 +104,7 @@ map.forEach((row, i) => {
                             x: j * Boundary.width,
                             y: i * Boundary.height
                         },
-
+                        image: imageMap('../Image/capRight.png')
                     })
                 )
                 break
@@ -138,7 +115,7 @@ map.forEach((row, i) => {
                             x: j * Boundary.width,
                             y: i * Boundary.height
                         },
-
+                        image: imageMap('../Image/capBottom.png')
                     })
                 )
                 break
@@ -149,7 +126,7 @@ map.forEach((row, i) => {
                             x: j * Boundary.width,
                             y: i * Boundary.height
                         },
-
+                        image: imageMap('../Image/capTop.png')
                     })
                 )
                 break
@@ -160,7 +137,7 @@ map.forEach((row, i) => {
                             x: j * Boundary.width,
                             y: i * Boundary.height
                         },
-
+                        image: imageMap('../Image/pipeCross.png')
                     })
                 )
                 break
@@ -172,7 +149,7 @@ map.forEach((row, i) => {
                             y: i * Boundary.height
                         },
                         color: 'blue',
-
+                        image: imageMap('../Image/pipeConnectorTop.png')
                     })
                 )
                 break
@@ -184,7 +161,7 @@ map.forEach((row, i) => {
                             y: i * Boundary.height
                         },
                         color: 'blue',
-
+                        image: imageMap('../Image/pipeConnectorRight.png')
                     })
                 )
                 break
@@ -196,7 +173,7 @@ map.forEach((row, i) => {
                             y: i * Boundary.height
                         },
                         color: 'blue',
-
+                        image: imageMap('../Image/pipeConnectorBottom.png')
                     })
                 )
                 break
@@ -207,7 +184,7 @@ map.forEach((row, i) => {
                             x: j * Boundary.width,
                             y: i * Boundary.height
                         },
-
+                        image: imageMap('../Image/pipeConnectorLeft.png')
                     })
                 )
                 break
@@ -222,8 +199,8 @@ imagePlayer.src = '../Image/bomber_down.png'
 //creat player
 let player = new Player({
     position: {
-        x: Boundary.width + Boundary.width / 2 - 18,
-        y: Boundary.height + Boundary.height / 2
+        x: Boundary.width + Boundary.width / 2 + 305,
+        y: Boundary.height + Boundary.height / 2 - 20
     }, speed: {
         x: 0,
         y: 0
@@ -234,12 +211,28 @@ let player = new Player({
 const imageEnemy = new Image()
 imageEnemy.src = '../Image/monster_down.png'
 
+const imageEnemy2 = new Image()
+imageEnemy2.src = '../Image/monster_down.png'
+
 //creat enemy
 let enemy = new Player({
     position: {
+        x: Boundary.width + Boundary.width / 2 + 180,
+        y: Boundary.height + Boundary.height / 2 + 100
+    }, speed: {
+        x: 0,
+        y: Math.floor(Math.random() * (1.5 - 1 + 1) ) + 1
+    }, image: imageEnemy
+})
+
+let enemy2 = new Player({
+    position: {
         x: Boundary.width + Boundary.width / 2 - 18,
         y: Boundary.height + Boundary.height / 2
-    }, image: imageEnemy
+    }, speed: {
+        x: Math.floor(Math.random() * (1.5 - 1 + 1) ) + 1,
+        y: 0
+    }, image: imageEnemy2
 })
 
 //creat Boom image
@@ -255,14 +248,6 @@ let boom = new Boom({
         y: -50
     }, image: imageBoom
 })
-// booms.forEach((boom) => {
-//     booms.push(new Boom({
-//         position: {
-//             x: 0,
-//             y: 0
-//         }, image = imageBoom
-//     }))
-// })
 
 //creat BoomBang Image
 const imageBoomBang = new Image()
@@ -276,8 +261,7 @@ let boomBang = new BoomBang({
     }, image: imageBoomBang
 })
 
-
-function circleCollidesWidhRectangle({circle, rectangle}) {
+function playerCollidesWidhRectangle({circle, rectangle}) {
     return (circle.position.x + circle.width + circle.speed.x >= rectangle.position.x &&
         circle.position.x + circle.speed.x <= rectangle.position.x + rectangle.width &&
         circle.position.y + circle.height + circle.speed.y >= rectangle.position.y &&
@@ -291,52 +275,174 @@ function playerCollidesBoomBang({player, boomBang}) {
         player.position.y + player.speed.y <= boomBang.position.y + boomBang.height)
 }
 
+function boomBangCollidesRectangle({boomBang, boundary}) {
+    return (boomBang.position.x + boomBang.width >= boundary.position.x &&
+        boomBang.position.x <= boundary.position.x + boundary.width &&
+        boomBang.position.y + boomBang.height >= boundary.position.y &&
+        boomBang.position.y <= boundary.position.y + boundary.height)
+}
+
+function playerCollidesMonster({player, monster}) {
+    return (player.position.x + player.width + player.speed.x >= monster.position.x &&
+        player.position.x + player.speed.x <= monster.position.x + monster.width &&
+        player.position.y + player.height + player.speed.y >= monster.position.y &&
+        player.position.y + player.speed.y <= monster.position.y + monster.height)
+}
+
+var direction = -1 // Enemy chuyen huong chuyen dong
+var checkDirection
+var countMonster = 0 //dem quai
 function animation() {
     requestAnimationFrame(animation)
     c.clearRect(0, 0, c.width, c.height)
+    // Math.floor(Math.random() * (max - min + 1) ) + min;
+    checkDirection = Math.floor(Math.random() * (1 - -1 + 1)) + -1;
+
     boundaries.forEach((boundary) => {
         boundary.draw()
-        if (circleCollidesWidhRectangle({circle: player, rectangle: boundary})) {
+        if (playerCollidesWidhRectangle({circle: player, rectangle: boundary})) {
             player.speed.x = 0
             player.speed.y = 0
         }
-        if (boomBang.position.x + boomBang.width >= boundary.position.x &&
-            boomBang.position.x <= boundary.position.x + boundary.width &&
-            boomBang.position.y + boomBang.height >= boundary.position.y &&
-            boomBang.position.y <= boundary.position.y + boundary.height) {
+
+        // enemy random movement
+        if (checkDirection <= 0) {
+            if (playerCollidesWidhRectangle({circle: enemy, rectangle: boundary})) {
+                enemy.speed.x = 1.5 * direction
+                enemy.speed.y = 0
+                // checkDirection  = Math.floor(Math.random() * 2)
+                console.log(enemy.speed.x + " speed_1_X " + checkDirection)
+            }
+        } else {
+            if (playerCollidesWidhRectangle({circle: enemy, rectangle: boundary})) {
+                enemy.speed.x = 0
+                enemy.speed.y = 1.2 * direction
+                // checkDirection  = Math.floor(Math.random() * 2)
+                console.log(enemy.speed.y + " speed_1_Y " + checkDirection)
+            }
+        }
+        if (playerCollidesWidhRectangle({circle: enemy, rectangle: boundary})) {
+            enemy.speed.x = enemy.speed.x * direction
+            enemy.speed.y = enemy.speed.y * direction
+        }
+
+        // enemy2 random movement
+        if (checkDirection <= 0) {
+            if (playerCollidesWidhRectangle({circle: enemy2, rectangle: boundary})) {
+                enemy2.speed.x = 1.5 * direction
+                enemy2.speed.y = 0
+                // checkDirection  = Math.floor(Math.random() * 2)
+                console.log(enemy2.speed.x + " speed_2_X " + checkDirection)
+            }
+        } else {
+            if (playerCollidesWidhRectangle({circle: enemy2, rectangle: boundary})) {
+                enemy2.speed.x = 0
+                enemy2.speed.y = 1.2 * direction
+                // checkDirection  = Math.floor(Math.random() * 2)
+                console.log(enemy2.speed.y + " speed_2_Y " + checkDirection)
+            }
+        }
+        if (playerCollidesWidhRectangle({circle: enemy2, rectangle: boundary})) {
+            enemy2.speed.x = enemy2.speed.x * direction
+            enemy2.speed.y = enemy2.speed.y * direction
+        }
+
+        if (boomBangCollidesRectangle({boomBang: boomBang, boundary: boundary})) {
             console.log("boom cham tuong")
         }
-    })
 
-    boom.update()
-    player.update()
-    boomBang.update()
+
+    })
+    // set Image monster
+    if (enemy.speed.x < 0) imageEnemy.src = '../Image/monster_left.png'
+    if (enemy.speed.x > 0) imageEnemy.src = '../Image/monster_right.png'
+    if (enemy.speed.y < 0) imageEnemy.src = '../Image/monster_up.png'
+    if (enemy.speed.y > 0) imageEnemy.src = '../Image/monster_down.png'
+
+    if (enemy2.speed.x < 0) imageEnemy2.src = '../Image/monster_left.png'
+    if (enemy2.speed.x > 0) imageEnemy2.src = '../Image/monster_right.png'
+    if (enemy2.speed.y < 0) imageEnemy2.src = '../Image/monster_up.png'
+    if (enemy2.speed.y > 0) imageEnemy2.src = '../Image/monster_down.png'
+
+
+    enemy.updatePlayer()
+    enemy2.updatePlayer()
+    boom.updateBoom()
+    player.updatePlayer()
+    boomBang.updateBoomBang()
+
     //draw boomBang
     if (checkStatusBoomBang) {
-        boomBang.update();
+        boomBang.updateBoomBang();
         setTimeout(() => {
             checkStatusBoomBang = false
             boomBang.position = {
                 x: -150,
                 y: -150
             }
-        }, 1000)
+        }, 250)
     }
+
     if (playerCollidesBoomBang({player, boomBang})) {
         imagePlayer.src = '../Image/bomber_dead.png'
         checkStatusPlayer = true
         console.log("Va cham boom")
     }
-    // console.log(checkStatusPlayer)
+    if (playerCollidesBoomBang({player: enemy, boomBang: boomBang})) {
+        countMonster++
+        enemy.position = {
+            x: -50,
+            y: -50
+        }
+        enemy.speed = {
+            x: 0,
+            y: 0
+        }
+    }
+    if (playerCollidesBoomBang({player: enemy2, boomBang: boomBang})) {
+        countMonster++
+        enemy2.position = {
+            x: -50,
+            y: -50
+        }
+        enemy2.speed = {
+            x: 0,
+            y: 0
+        }
+    }
+    // endgame
+    if (playerCollidesMonster({player: player, monster: enemy})) {
+        console.log("dead")
+        player.position = {
+            x: -50,
+            y: -50
+        }
+        alert("You lose")
+    }
+    // if (playerCollidesMonster({player: player, monster: enemy2})) {
+    //     console.log("dead")
+    //     player.position = {
+    //         x: -50,
+    //         y: -50
+    //     }
+    //     alert("You lose")
+    // }
+    if (countMonster == 1) {
+        setTimeout(()=>{
+            console.log("you Win")
+        },1000)
+
+        countMonster = 0
+    }
+
 
 }
+
 
 var checkStatusBoomBang = false
 var checkStatusPlayer = false
 
 addEventListener('keydown', (key) => {
-
-
     if (key.keyCode === 87) {
         player.speed.y = -4
         imagePlayer.src = '../Image/bomber_up.png'
@@ -353,8 +459,6 @@ addEventListener('keydown', (key) => {
         player.speed.x = 4
         imagePlayer.src = '../Image/bomber_right.png'
     }
-
-
     if (key.keyCode === 66) {
         boomPosition.push({
             x: player.position.x,

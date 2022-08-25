@@ -11,7 +11,7 @@ class Player {
         c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height)
     }
 
-    update() {
+    updatePlayer() {
         this.draw()
         this.position.x += this.speed.x
         this.position.y += this.speed.y
