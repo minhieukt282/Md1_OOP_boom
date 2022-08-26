@@ -2,8 +2,8 @@ class BoomBang {
     constructor({position, image}) {
         this.position = position
         this.image = image
-        this.width = 40
-        this.height = 40
+        this.width = 30
+        this.height = 60
     }
 
 

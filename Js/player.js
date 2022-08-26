@@ -17,3 +17,4 @@ class Player {
         this.position.y += this.speed.y
     }
 }
+

@@ -6,7 +6,7 @@ body {
     display: flex;
     justify-content: center;
     margin-top: 40%;
-    color: gold;
+    color: white;
 }
 
 .login {
@@ -53,6 +53,6 @@ button{
     width: 150px;
     height: 25px;
     background-color: darkgreen;
-    color: gold;
+    color: white;
     border: 0;
 }

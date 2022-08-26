@@ -5,7 +5,6 @@ function imageMap(src) {
     return image
 }
 
-
 const boundaries = []
 map.forEach((row, i) => {
     row.forEach((symbol, j) => {
@@ -29,7 +28,8 @@ map.forEach((row, i) => {
                         position: {
                             x: Boundary.width * j,
                             y: Boundary.height * i
-                        }, image: imageMap('../Image/pipeVertical.png')
+                        },
+                        image: imageMap('../Image/pipeVertical.png')
 
                     })
                 )
@@ -224,8 +224,8 @@ imagePlayer.src = '../Image/bomber_down.png'
 //creat player
 let player = new Player({
     position: {
-        x: Boundary.width + Boundary.width / 2 + 350,
-        y: Boundary.height + Boundary.height / 2 - 18
+        x: Boundary.width + Boundary.width / 2 + 250,
+        y: Boundary.height + Boundary.height / 2 + 150
     }, speed: {
         x: 0,
         y: 0
@@ -286,19 +286,39 @@ function imageBoomBang(src) {
 }
 
 //creat BoomBang
-let boomBang = new BoomBang({
-    position: {
-        x: -150,
-        y: -150
-    }, image: imageBoomBang('../Image/bombbang_down_1.png')
+const boomBangs = []
+const imageBoomBangs = [imageBoomBang('../Image/bomBangUp.png'),
+    imageBoomBang('../Image/bomBangLeft.png'),
+    imageBoomBang('../Image/bomBangDown.png'),
+    imageBoomBang('../Image/bomBangRight.png')
+]
+
+for (let i = 0; i < 4; i++) {
+    boomBangs.push(
+        new BoomBang({
+            position: {
+                x: 500,
+                y: 450
+            },
+            image: imageBoomBangs[i]
+        })
+    )
+}
+var indexBoomBangs = 2
+// for (let i = 0; i < boomBangs.length; i++) {
+//     if (i === indexBoomBangs) console.log(boomBangs[i])
+// }
+boomBangs.forEach((item) => {
+    console.log(item)
 })
 
 //creat audio
-function audioSrc(src){
+function audioSrc(src) {
     var audio = new Audio(src)
     audio.play()
 }
-audioSrc('..Audio/lobby.mp3')
+
+// audioSrc('..Audio/lobby.mp3')
 
 function playerCollidesWidhRectangle({circle, rectangle}) {
     return (circle.position.x + circle.width + circle.speed.x >= rectangle.position.x &&
@@ -332,7 +352,6 @@ var direction = -1 // Enemy chuyen huong chuyen dong
 var checkDirection
 var countMonster = 0 //dem quai
 function animation() {
-    console.log("dạbdasd")
     requestAnimationFrame(animation)
     c.clearRect(0, 0, c.width, c.height)
     // Math.floor(Math.random() * (max - min + 1) ) + min;
@@ -350,14 +369,12 @@ function animation() {
             if (playerCollidesWidhRectangle({circle: enemy, rectangle: boundary})) {
                 enemy.speed.x = 1.5 * direction
                 enemy.speed.y = 0
-                // checkDirection  = Math.floor(Math.random() * 2)
                 console.log(enemy.speed.x + " speed_1_X " + checkDirection)
             }
         } else {
             if (playerCollidesWidhRectangle({circle: enemy, rectangle: boundary})) {
                 enemy.speed.x = 0
                 enemy.speed.y = 1.2 * direction
-                // checkDirection  = Math.floor(Math.random() * 2)
                 console.log(enemy.speed.y + " speed_1_Y " + checkDirection)
             }
         }
@@ -371,14 +388,12 @@ function animation() {
             if (playerCollidesWidhRectangle({circle: enemy2, rectangle: boundary})) {
                 enemy2.speed.x = 1.5 * direction
                 enemy2.speed.y = 0
-                // checkDirection  = Math.floor(Math.random() * 2)
                 console.log(enemy2.speed.x + " speed_2_X " + checkDirection)
             }
         } else {
             if (playerCollidesWidhRectangle({circle: enemy2, rectangle: boundary})) {
                 enemy2.speed.x = 0
                 enemy2.speed.y = 1.2 * direction
-                // checkDirection  = Math.floor(Math.random() * 2)
                 console.log(enemy2.speed.y + " speed_2_Y " + checkDirection)
             }
         }
@@ -387,10 +402,12 @@ function animation() {
             enemy2.speed.y = enemy2.speed.y * direction
         }
 
-        if (boomBangCollidesRectangle({boomBang: boomBang, boundary: boundary})) {
-            console.log("boom cham tuong")
+        for (let i = 0; i < boomBangs.length; i++) {
+            if (boomBangCollidesRectangle({boomBang: boomBangs[i], boundary: boundary})) {
+                // boomBangs.splice(boomBangs[i], 1)
+                console.log("boom cham tuong")
+            }
         }
-
 
     })
     // set Image monster
@@ -405,55 +422,75 @@ function animation() {
     if (enemy2.speed.y > 0) imageEnemy2.src = '../Image/monster_down.png'
 
 
-    enemy.updatePlayer()
-    enemy2.updatePlayer()
+    // enemy.updatePlayer()
+    // enemy2.updatePlayer()
     boom.updateBoom()
     player.updatePlayer()
-    boomBang.updateBoomBang()
+    for (let i = 0; i < boomBangs.length; i++) {
+        boomBangs[i].updateBoomBang()
+    }
+
 
     //draw boomBang
     if (checkStatusBoomBang) {
-        boomBang.updateBoomBang();
+        for (let i = 0; i < boomBangs.length; i++) {
+            boomBangs[i].updateBoomBang()
+        }
         setTimeout(() => {
             checkStatusBoomBang = false
-            boomBang.position = {
-                x: -150,
-                y: -150
+            boomBangs[0].position = {
+                x: 450,
+                y: 450
+            }
+            boomBangs[1].position = {
+                x: 410,
+                y: 490
+            }
+            boomBangs[2].position = {
+                x: 450,
+                y: 490
+            }
+            boomBangs[3].position = {
+                x: 450,
+                y: 490
             }
             audioSrc('../Audio/bombangV2.mp3')
         }, 250)
+
+    }
+    for (let i = 0; i < boomBangs.length; i++) {
+        if (playerCollidesBoomBang({player: player, boomBang: boomBangs[i]})) {
+            imagePlayer.src = '../Image/bomber_dead.png'
+            checkStatusPlayer = true
+            console.log("Va cham boom")
+        }
+        // enemy die
+        if (playerCollidesBoomBang({player: enemy, boomBang: boomBangs[i]})) {
+            countMonster++
+            enemy.position = {
+                x: -50,
+                y: -50
+            }
+            enemy.speed = {
+                x: 0,
+                y: 0
+            }
+            audioSrc('../Audio/monster_die.mp3')
+        }
+        if (playerCollidesBoomBang({player: enemy2, boomBang: boomBangs[i]})) {
+            countMonster++
+            enemy2.position = {
+                x: -50,
+                y: -50
+            }
+            enemy2.speed = {
+                x: 0,
+                y: 0
+            }
+            audioSrc('../Audio/monster_die.mp3')
+        }
     }
 
-    if (playerCollidesBoomBang({player, boomBang})) {
-        imagePlayer.src = '../Image/bomber_dead.png'
-        checkStatusPlayer = true
-        console.log("Va cham boom")
-    }
-    // enemy die
-    if (playerCollidesBoomBang({player: enemy, boomBang: boomBang})) {
-        countMonster++
-        enemy.position = {
-            x: -50,
-            y: -50
-        }
-        enemy.speed = {
-            x: 0,
-            y: 0
-        }
-        audioSrc('../Audio/monster_die.mp3')
-    }
-    if (playerCollidesBoomBang({player: enemy2, boomBang: boomBang})) {
-        countMonster++
-        enemy2.position = {
-            x: -50,
-            y: -50
-        }
-        enemy2.speed = {
-            x: 0,
-            y: 0
-        }
-        audioSrc('../Audio/monster_die.mp3')
-    }
     // endgame
     if (playerCollidesMonster({player: player, monster: enemy})) {
         console.log("dead")
@@ -478,10 +515,7 @@ function animation() {
         // audioSrc('../Audio/victory.mp3')
         countMonster = 0
     }
-
-
 }
-
 
 var checkStatusBoomBang = false
 var checkStatusPlayer = false
@@ -531,12 +565,25 @@ addEventListener('keyup', (key) => {
             y: player.position.y
         }
         console.log(boom.position)
-        console.log(boomBang.position)
+        // console.log(boomBangs.position)
         setTimeout(() => {
-            boomBang.position = {
+            boomBangs[0].position = {
                 x: boom.position.x,
                 y: boom.position.y
             }
+            boomBangs[1].position = {
+                x: boom.position.x - 40,
+                y: boom.position.y + 40
+            }
+            boomBangs[2].position = {
+                x: boom.position.x,
+                y: boom.position.y + 40
+            }
+            boomBangs[3].position = {
+                x: boom.position.x,
+                y: boom.position.y + 40
+            }
+
             boom.position = {
                 x: -50,
                 y: -50
@@ -548,4 +595,5 @@ addEventListener('keyup', (key) => {
 })
 
 animation();
-console.log(c.width, c.height)
+
+
