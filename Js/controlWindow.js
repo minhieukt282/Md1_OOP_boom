@@ -17,3 +17,12 @@ function inGame(){
 function lobby(){
     window.location = "Lobby.html"
 }
+function audioSrc(src) {
+    var audio = new Audio(src)
+    audio.play()
+}
+function playAudio(){
+    alert("dsad")
+    audioSrc('../Audio/backgroundMusic.mp3')
+}
+

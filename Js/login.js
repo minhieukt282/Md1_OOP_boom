@@ -1,5 +1,3 @@
-
-
 function login() {
     let userName = document.getElementById("user").value;
     let pass = document.getElementById("pass").value;
@@ -15,8 +13,11 @@ function login() {
 
     if (isValue) {
         window.location = "Lobby.html";
+        // document.getElementById("note").innerHTML = "true";
+
     } else
         document.getElementById("note").innerHTML = "Tên đăng nhập hoặc mật khẩu sai";
+
 }
 
 function saveData() {
@@ -43,12 +44,8 @@ function saveData() {
     }
 
 }
-function audioSrc(src){
-    var audio = new Audio(src)
-    audio.play()
-}
 
-
-function music(){
-    audioSrc('..Audio/lobby.mp3')
-}
+// window.addEventListener('click',(event)=>{
+//     console.log("asdas")
+//
+// })
