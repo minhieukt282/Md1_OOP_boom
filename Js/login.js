@@ -22,7 +22,6 @@ function login() {
 }
 
 function saveData() {
-    // tim hieu JSON.prase
     var listAccount = JSON.parse(localStorage.getItem("account")) ?? [];
     let fullname = document.getElementById("fullname").value;
     let ps = document.getElementById("mk").value;
@@ -34,7 +33,7 @@ function saveData() {
     } else if (document.getElementById("female").checked) {
         gender = document.getElementById("female").innerHTML = 2;
     }
-    //luu tk vao vung nho
+    // save to local storage
     if (fullname && ps) {
         listAccount.push({
             userName: fullname,
@@ -42,11 +41,9 @@ function saveData() {
         });
         localStorage.setItem("account", JSON.stringify(listAccount));
         document.getElementById("result").innerHTML = "Đăng ký thành công"
-    }
-
+        setTimeout(() => {
+            window.location = "index.html"
+        }, 2000)
+    } else document.getElementById("result").innerHTML = "Tên đăng nhập hoặc mật khẩu không được để trống"
 }
 
-// window.addEventListener('click',(event)=>{
-//     console.log("asdas")
-//
-// })

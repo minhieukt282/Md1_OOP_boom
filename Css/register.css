@@ -4,7 +4,7 @@ body {
     background-size: cover;
     display: flex;
     justify-content: center;
-    color: gold;
+    color: white;
 }
 
 table, tr, td {
@@ -27,7 +27,7 @@ button {
     height: 25px;
     text-align: center;
     background-color: darkgreen;
-    color: gold;
+    color: white;
     border: 0;
 
 }

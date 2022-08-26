@@ -3,11 +3,11 @@ function register() {
 }
 
 function returnLogin() {
-    window.location = "login.html";
+    window.location = "index.html";
 }
 
 function logout() {
-    window.location = "login.html";
+    window.location = "index.html";
 }
 
 function inGame(){
@@ -20,9 +20,5 @@ function lobby(){
 function audioSrc(src) {
     var audio = new Audio(src)
     audio.play()
-}
-function playAudio(){
-    alert("dsad")
-    audioSrc('../Audio/backgroundMusic.mp3')
 }
 

@@ -341,9 +341,9 @@ function playerCollidesMonster({player, monster}) {
         player.position.y + player.speed.y <= monster.position.y + monster.height)
 }
 
-const direction = -1 // Enemy chuyen huong chuyen dong
+const direction = -1 // Enemy direction
 var checkDirection
-var countMonster = 0 //dem quai
+var countMonster = 0 //count monster
 var animationId
 
 function animation() {
@@ -593,34 +593,3 @@ function start() {
     animation()
     btn.style.display = 'none'
 }
-
-// function reStart() {
-//     player.position = {
-//         x: Boundary.width + Boundary.width / 2 + 250,
-//         y: Boundary.height + Boundary.height / 2 + 150
-//     }
-//     player.speed = {
-//         x: 0,
-//         y: 0
-//     }
-//     enemy.position = {
-//         x: Boundary.width + Boundary.width / 2 + 180,
-//         y: Boundary.height + Boundary.height / 2 + 100
-//     }
-//     enemy.speed = {
-//         x: 0,
-//         y: Math.floor(Math.random() * (1.5 - 1 + 1)) + 1
-//     }
-//     enemy2.position = {
-//         x: Boundary.width + Boundary.width / 2 - 18,
-//         y: Boundary.height + Boundary.height / 2
-//         // x: -50,
-//         // y: -50
-//     }
-//     enemy2.speed = {
-//         x: Math.floor(Math.random() * (1.5 - 1 + 1)) + 1,
-//         y: 0
-//     }
-//     start()
-//     rebtn.style.display = 'none'
-// }
