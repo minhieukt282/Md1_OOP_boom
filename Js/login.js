@@ -2,7 +2,7 @@ function login() {
     let userName = document.getElementById("user").value;
     let pass = document.getElementById("pass").value;
     var listAccount = JSON.parse(localStorage.getItem("account")) ?? [];
-    let isValue = false;
+    var isValue = false;
 
     listAccount.forEach(output);
 
@@ -12,6 +12,7 @@ function login() {
     }
 
     if (isValue) {
+        audioSrc('../Audio/backgroundMusic.mp3')
         window.location = "Lobby.html";
         // document.getElementById("note").innerHTML = "true";
 
